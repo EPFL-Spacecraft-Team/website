@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amateur Radio &amp; Open Telemetry - EPFL Spacecraft Team</title>
+  <meta name="description" content="How the EPFL Spacecraft Team's student satellite missions contribute to the amateur radio community: educational purpose, ground segment, open telemetry, SatNOGS, public telecommands and university collaboration.">
+  <meta property="og:title" content="Amateur Radio &amp; Open Telemetry - EPFL Spacecraft Team">
+  <meta property="og:description" content="Student-built satellites, open telemetry and public telecommands for the amateur radio community.">
+  <meta property="og:image" content="ground-segment.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a href="index.html" aria-label="EPFL Spacecraft Team, home"><img class="logo" src="logo.png" alt="EPFL Spacecraft Team"></a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="amateur-radio.html" class="current" aria-current="page">Amateur Radio</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="narrow">
+          <h1>Amateur Radio &amp; Open Telemetry</h1>
+          <p class="lead">The EPFL Spacecraft Team is a student association. Our satellites are designed, built and operated by students as hands-on training in space engineering, and we want to share what we learn with the worldwide amateur radio community.</p>
+        </div>
+        <div class="photo">
+          <img src="ground-segment.jpg" alt="EPFL Spacecraft Team ground segment: UHF and dish antennas on a rooftop overlooking the lake and mountains" width="1800" height="1350">
+        </div>
+      </div>
+    </section>
+
+    <section id="educational-purpose">
+      <div class="wrap">
+        <div class="narrow">
+          <h2>Our educational purpose</h2>
+          <p>More than 100 students work with us to learn how a real spacecraft comes to life: from the satellite platform to the ground segment and the radio link. Operating in the amateur-satellite service is part of that training. Students learn about link budgets, modulation, protocols, antennas and satellite operations, in the open and alongside the amateur radio community.</p>
+          <p>Our goal is to give the next generation of Swiss space engineers practical experience, and to give something back to the community that has supported small satellites for decades.</p>
+        </div>
+
+        <div class="block" id="ground-segment">
+          <h3>Our ground segment</h3>
+          <p>Our ground segment is installed on the highest roof of the EPFL campus. The antennas and the ground station software, which also serves as our mission control software, are largely built by students.</p>
+          <div class="scroll">
+            <table>
+              <thead>
+                <tr><th>Parameter</th><th>X-band station</th><th>UHF station</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="key">Name</td><td>VORTEX</td><td>VENUS</td></tr>
+                <tr><td class="key">Country</td><td>Switzerland</td><td>Switzerland</td></tr>
+                <tr><td class="key">Coordinates</td><td>46&deg;31'15.0"N 6&deg;33'55.1"E</td><td>46&deg;31'15.0"N 6&deg;33'55.1"E</td></tr>
+                <tr><td class="key">Altitude</td><td>396 m</td><td>396 m</td></tr>
+                <tr><td class="key">Control room</td><td>EPFL campus</td><td>EPFL campus</td></tr>
+                <tr><td class="key">Frequency range</td><td>X-band (centered on 10.45-10.5 GHz)</td><td>UHF (centered on 435-438 MHz)</td></tr>
+                <tr><td class="key">Antenna type</td><td>Parabolic dish</td><td>Yagi-Uda</td></tr>
+                <tr><td class="key">Downlink</td><td>Yes</td><td>Yes (H and V)</td></tr>
+                <tr><td class="key">Uplink</td><td>No</td><td>Yes (H only)</td></tr>
+                <tr><td class="key">Tracking</td><td>Yes (X-Y coordinates)</td><td>Yes (Az-El coordinates)</td></tr>
+                <tr><td class="key">Network affiliation</td><td>Not yet (planned)</td><td>SatNOGS</td></tr>
+                <tr><td class="key">Availability</td><td>24/7</td><td>24/7, mission operations have priority over SatNOGS</td></tr>
+                <tr><td class="key">Automation level</td><td>Semi-automated</td><td>Semi-automated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">The X-band station is currently under development.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contribution">
+      <div class="wrap">
+        <h2>Our contribution to the amateur radio community</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Open telemetry</h3>
+            <p>Our goal is for the telemetry transmitted by our satellite to be received and decoded by radio amateurs around the world, so that anyone with suitable equipment can follow the mission.</p>
+          </div>
+          <div class="card">
+            <h3>SatNOGS network</h3>
+            <p>We are part of the SatNOGS community and operate a UHF antenna as a ground station, taking part in the global effort to track and receive satellites.</p>
+          </div>
+          <div class="card">
+            <h3>Public telecommands</h3>
+            <p>We plan to offer licensed radio amateurs a set of public, non-critical telecommands for radio communication experiments and spacecraft data requests. The full list is below.</p>
+          </div>
+        </div>
+
+        <div class="block" id="public-telecommands">
+          <h3>Public telecommands</h3>
+          <p>Once the spacecraft is in nominal operations, licensed radio amateurs will be able to send a set of predefined, non-critical commands to our UHF transceiver. They let you run radio communication experiments and request spacecraft data. Requests are subject to limits on frequency, response size and transmission time. The public commands are not available during the launch and early operations phase or during commissioning, roughly the first four weeks after launch.</p>
+          <div class="scroll">
+            <table>
+              <thead>
+                <tr><th>Command</th><th>What it does</th></tr>
+              </thead>
+              <tbody>
+                <tr class="group"><td colspan="2">Radio communication experiments</td></tr>
+                <tr><td class="cmd">LINK_PING</td><td>Returns an acknowledgment containing the original request identifier.</td></tr>
+                <tr><td class="cmd">ECHO_PACKET</td><td>Returns a small data payload transmitted by the operator.</td></tr>
+                <tr><td class="cmd">START_RX_TEST</td><td>Starts a test session for receiving numbered uplink packets.</td></tr>
+                <tr><td class="cmd">GET_RX_TEST_RESULT</td><td>Reports the identifiers of the packets successfully received during a test session.</td></tr>
+                <tr><td class="cmd">REQUEST_TEST_FRAME</td><td>Transmits a predefined reference data pattern.</td></tr>
+                <tr><td class="cmd">GET_RX_STATISTICS</td><td>Returns the available UHF reception statistics.</td></tr>
+                <tr><td class="cmd">GET_TEST_HISTORY</td><td>Returns recent communication test results.</td></tr>
+                <tr class="group"><td colspan="2">Spacecraft and environmental data requests</td></tr>
+                <tr><td class="cmd">GET_HOUSEKEEPING</td><td>Requests selected spacecraft housekeeping telemetry.</td></tr>
+                <tr><td class="cmd">GET_POWER_STATUS</td><td>Requests the available battery voltage, current and power system information.</td></tr>
+                <tr><td class="cmd">GET_THERMAL_DATA</td><td>Requests the available temperature measurements from spacecraft subsystems.</td></tr>
+                <tr><td class="cmd">GET_ORBIT_DATA</td><td>Requests the available spacecraft position, velocity or orbital information.</td></tr>
+                <tr><td class="cmd">GET_ATTITUDE_DATA</td><td>Requests the available spacecraft orientation and angular rate information.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">The public interface cannot control the on-board computer, change spacecraft modes, configure the transceiver or run privileged commands. Mission-critical communications always have priority, and the half-duplex UHF transceiver cannot receive while it transmits.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="universities">
+      <div class="wrap">
+        <div class="narrow">
+          <h2>Working with universities worldwide</h2>
+          <p>We are exploring the possibility of collaborating with university teams around the world, to exchange experience and support each other's satellite and ground-station projects.</p>
+          <p>Are you a radio amateur or part of a university team and want to get in touch? Reach out through our contact page.</p>
+          <a class="button" href="mailto:est@epfl.ch">Contact us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; EPFL Spacecraft Team</span>
+      <a href="mailto:est@epfl.ch">est@epfl.ch</a>
+    </div>
+  </footer>
+</body>
+</html>
