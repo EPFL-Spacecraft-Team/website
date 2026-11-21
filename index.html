@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EPFL Spacecraft Team</title>
+  <meta name="description" content="EPFL Spacecraft Team is a student-led association founded in 2020. About 105 students design, build and operate satellites. Next: CHESS Pathfinder 0, our first 3U CubeSat, launching in Q4 2027.">
+  <meta property="og:title" content="EPFL Spacecraft Team">
+  <meta property="og:description" content="Students designing, building and operating their own satellites at EPFL.">
+  <meta property="og:image" content="team.jpg">
+  <style>
+    :root {
+      --bg: #0e0f13;
+      --bg-2: #14161c;
+      --text: #f2f3f5;
+      --muted: #b9bec8;      
+      --line: rgba(255, 255, 255, 0.14);
+      --line-strong: rgba(255, 255, 255, 0.3);
+      --accent: #fb6a02;     /* logo orange: 6.6:1 on --bg */
+      --on-accent: #0e0f13;  /* dark text on orange buttons: 6.6:1 */
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 18px; line-height: 1.65;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--text); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--accent); color: var(--on-accent); padding: 10px 16px; font-weight: 700; }
+    .skip:focus { left: 16px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    h1, h2, h3 { line-height: 1.12; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.01em; text-wrap: balance; }
+    h1 { font-size: clamp(40px, 6.4vw, 76px); letter-spacing: -0.025em; }
+    h2 { font-size: clamp(30px, 4vw, 48px); }
+    h3 { font-size: 21px; letter-spacing: 0; }
+    p { margin: 0 0 16px; color: var(--muted); }
+    .lead { font-size: clamp(19px, 1.8vw, 22px); color: var(--text); }
+    .eyebrow { display: block; margin-bottom: 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+    /* Visible placeholder for content still to be provided */
+    .todo {
+      display: inline-block; background: #ffd84d; color: #111; font-size: 14px; font-weight: 700;
+      line-height: 1.4; padding: 2px 8px; border-radius: 4px; border: 2px dashed #111;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 6px;
+      font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;
+    }
+    .btn-primary { background: var(--accent); color: var(--on-accent); }
+    .btn-primary:hover { color: var(--on-accent); background: #ff7d1f; }
+    .btn-primary:focus-visible, .yt:focus-visible { outline-color: #fff; }
+    .btn-ghost { color: var(--text); border: 1.5px solid var(--line-strong); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+    /* Top bar: logo left, page links right */
+    .topbar { position: sticky; top: 0; z-index: 20; background: rgba(14, 15, 19, 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; }
+    .logo { height: 44px; width: auto; }
+    .nav { display: flex; gap: 6px; }
+    .nav a { font-size: 15px; font-weight: 600; text-decoration: none; padding: 8px 14px; border-radius: 6px; color: var(--muted); }
+    .nav a:hover { color: var(--text); background: rgba(255, 255, 255, 0.07); }
+    .nav a[aria-current="page"] { color: var(--text); background: rgba(255, 255, 255, 0.09); }
+
+    /* Hero: team photo */
+    .hero { position: relative; height: min(84vh, 780px); min-height: 640px; overflow: hidden; }
+    .hero-media { position: absolute; inset: 0; overflow: hidden; }
+    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; transform: scale(1.14); transform-origin: 72% 78%; }
+    .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s ease; }
+    .hero-media video.is-playing { opacity: 1; }
+    .motion-toggle {
+      position: absolute; z-index: 2; right: 24px; bottom: 24px; width: 44px; height: 44px; padding: 0;
+      display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: rgba(14,15,19,0.65); color: var(--text);
+    }
+    .motion-toggle[hidden] { display: none; }
+    .motion-toggle:hover { background: rgba(14,15,19,0.9); border-color: var(--text); }
+    .motion-toggle svg { fill: currentColor; }
+    .motion-toggle .i-play { display: none; }
+    .motion-toggle[aria-pressed="true"] .i-play { display: inline; }
+    .motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(14,15,19,0.94) 0%, rgba(14,15,19,0.6) 34%, rgba(14,15,19,0.04) 60%, rgba(14,15,19,0.15) 84%, rgba(14,15,19,1) 100%);
+    }
+    .hero .wrap { position: relative; z-index: 1; padding-top: 56px; }
+    .hero h1 { margin-bottom: 14px; }
+    .hero .lead { max-width: 640px; margin-bottom: 26px; }
+    .hero .eyebrow { color: var(--text); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Section rhythm */
+    section { padding: 110px 0; }
+    section.tight { padding: 72px 0; }
+
+    /* Intro + members */
+    .intro { display: grid; grid-template-columns: 1.35fr 1fr; gap: 72px; align-items: start; }
+    .intro p:last-child { margin-bottom: 0; }
+    .members h3 { margin-bottom: 4px; }
+    .members .sub { font-size: 15px; margin-bottom: 18px; }
+    .members ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .members li { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 4px 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+    .members .n { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+    .members .bar { grid-column: 2; height: 4px; background: var(--accent); border-radius: 2px; }
+    .members li.other .bar { background: var(--line-strong); }
+    .members .note { font-size: 14px; margin: 12px 0 0; }
+
+    /* Timeline: horizontal on wide screens */
+    .timeline-head { max-width: 760px; }
+    .timeline { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; border-top: 2px solid var(--line-strong); }
+    .timeline li { position: relative; padding-top: 30px; }
+    .timeline li::before { content: ""; position: absolute; top: -9px; left: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--text); }
+    .timeline li.next::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 6px rgba(251, 106, 2, 0.22); }
+    .timeline .year { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); }
+    .timeline h3 { margin: 6px 0 8px; }
+    .timeline p { font-size: 16px; margin: 0 0 8px; }
+    .timeline a { font-size: 16px; font-weight: 600; }
+
+    /* Gallery: full-bleed */
+    .gallery-section { padding-top: 0; }
+    .gallery-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+    .gallery-head p { max-width: 520px; margin: 0; }
+    .gallery { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 10px; padding: 0 10px; }
+    .gallery figure { margin: 0; position: relative; overflow: hidden; background: var(--bg-2); }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery .g-structure { grid-row: span 2; min-height: 560px; }
+    .gallery .g-structure img { object-position: 45% 50%; }
+    .gallery .g-uhf { aspect-ratio: 4 / 3; }
+    .gallery .g-code { aspect-ratio: 4 / 3; background: var(--bg); }
+    .gallery .g-code img { object-fit: contain; object-position: 50% 50%; }
+    .gallery figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 18px 14px;
+      font-size: 15px; line-height: 1.45; color: #fff;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 55%);
+    }
+
+    /* CHESS Pathfinder 0 */
+    .mission { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .mission-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start; }
+    .mission h2 { font-size: clamp(34px, 4.3vw, 54px); text-wrap: nowrap; white-space: nowrap; }
+    @media (max-width: 420px) { .mission h2 { font-size: 32px; } }
+    .goals { list-style: none; counter-reset: g; margin: 28px 0 0; padding: 0; }
+    .goals li { counter-increment: g; display: grid; grid-template-columns: 44px 1fr; gap: 0 12px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .goals li::before { content: "0" counter(g); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 2px; }
+    .goals h3 { margin: 0 0 4px; font-size: 19px; }
+    .goals p { margin: 0; font-size: 16px; }
+    .video-col { position: sticky; top: 96px; }
+    .yt {
+      position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 6px;
+      background: #000 radial-gradient(circle at 50% 50%, #1d2230 0%, #000 75%); text-decoration: none;
+    }
+    .yt img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity .2s; }
+    .yt:hover img { opacity: 1; }
+    .yt .yt-label { position: absolute; left: 16px; bottom: 14px; right: 16px; color: #fff; font-size: 15px; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,0.8); }
+    .yt .play {
+      position: absolute; top: 50%; left: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+      border-radius: 50%; background: var(--accent); display: grid; place-items: center;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5); transition: transform .2s;
+    }
+    .yt:hover .play, .yt:focus-visible .play { transform: scale(1.08); }
+    .yt .play svg { width: 28px; height: 28px; margin-left: 4px; fill: var(--on-accent); }
+    .yt-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #000; }
+    .yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-caption { font-size: 16px; margin: 14px 0 0; }
+
+    /* Amateur radio band: simple, no box */
+    .radio-band .wrap { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+    .radio-band h2 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 10px; }
+    .radio-band p { margin: 0; max-width: 680px; }
+
+    /* Supporters */
+    .supporters { border-top: 1px solid var(--line); }
+    .supporters h2 { font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+    /* Two rows of small logos on wide screens (6 + 5) */
+    .logos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 32px 40px; align-items: center; max-width: 980px; }
+    .logos li { display: flex; align-items: center; justify-content: center; height: 48px; }
+    .logos a { display: block; opacity: 0.8; transition: opacity .2s; }
+    .logos a:hover, .logos a:focus-visible { opacity: 1; }
+    .logos img { max-height: 38px; max-width: 120px; width: auto; height: auto; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; padding-top: 32px; padding-bottom: 32px; font-size: 15px; color: var(--muted); }
+    footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+    footer a { color: var(--text); }
+
+    /* Tablet */
+    @media (max-width: 991px) {
+      section { padding: 84px 0; }
+      .intro, .mission-grid { grid-template-columns: 1fr; gap: 48px; }
+      .timeline { grid-template-columns: 1fr 1fr; row-gap: 40px; border-top: 0; }
+      .timeline li { border-top: 2px solid var(--line-strong); }
+      .video-col { position: static; }
+      .members { max-width: 600px; }
+      .logos { grid-template-columns: repeat(4, 1fr); }
+      .radio-band .wrap { grid-template-columns: 1fr; gap: 24px; }
+      .radio-band .btn { justify-self: start; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery .g-structure { grid-column: 1 / -1; grid-row: auto; min-height: 0; aspect-ratio: 16 / 10; }
+    }
+    /* Phone */
+    @media (max-width: 767px) {
+      body { font-size: 17px; }
+      section { padding: 68px 0; }
+      section.tight { padding: 52px 0; }
+      .logo { height: 36px; }
+      .nav a { padding: 8px 10px; font-size: 14px; }
+      .hero { height: auto; min-height: 0; display: flex; flex-direction: column; }
+      .hero-media { position: relative; inset: auto; height: 300px; }
+      .hero-media img { transform: none; object-position: 78% 74%; }
+      .motion-toggle { top: 244px; bottom: auto; right: 16px; }
+      .hero::after { inset: 0 0 auto 0; height: 300px; background: linear-gradient(180deg, rgba(14,15,19,0) 60%, rgba(14,15,19,0.95) 100%); }
+      .hero .wrap { padding-top: 28px; }
+      .hero .eyebrow { color: var(--accent); }
+      .actions .btn { flex: 1 1 auto; justify-content: center; }
+      .timeline { grid-template-columns: 1fr; margin-top: 32px; gap: 0; border-top: 0; border-left: 2px solid var(--line-strong); }
+      .timeline li { border-top: 0; padding: 0 0 32px 28px; }
+      .timeline li:last-child { padding-bottom: 0; }
+      .timeline li::before { top: 4px; left: -9px; }
+      .gallery { grid-template-columns: 1fr; padding: 0; gap: 6px; }
+      .gallery .g-structure, .gallery .g-uhf, .gallery .g-code { aspect-ratio: 4 / 3; }
+      .radio-band .wrap { grid-template-columns: 1fr; gap: 24px; }
+      .radio-band .btn { justify-self: start; }
+      .logos { grid-template-columns: repeat(3, 1fr); gap: 28px 24px; }
+      .logos img { max-height: 32px; max-width: 96px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a href="index.html" aria-label="EPFL Spacecraft Team, home"><img class="logo" src="logo.png" alt="EPFL Spacecraft Team"></a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="amateur-radio.html">Amateur Radio</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Top of the page: looping orbit video (CP-0_orbit.mp4) over the team photo.
+       The photo stays underneath: it shows until the video starts, if the file is missing,
+       and for visitors who prefer reduced motion. -->
+  <div class="hero">
+    <div class="hero-media">
+      <img src="team.jpg" alt="About forty members of the EPFL Spacecraft Team in navy team sweaters, posing in front of the glass façade of the SwissTech Convention Center, fall 2025">
+      <video id="hero-video" muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+        <source src="CP-0_orbit.mp4" type="video/mp4">
+      </video>
+    </div>
+    <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false" hidden>
+      <span class="sr">Pause background animation</span>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect class="i-pause" x="6" y="5" width="4" height="14" rx="1"/><rect class="i-pause" x="14" y="5" width="4" height="14" rx="1"/><path class="i-play" d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="wrap">
+      <span class="eyebrow">Student space association · EPFL</span>
+      <h1>EPFL Spacecraft Team</h1>
+      <p class="lead">Students design, develop, launch and operate satellites from EPFL.</p>
+      <div class="actions">
+        <a class="btn btn-ghost" href="amateur-radio.html">For radio amateurs &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- What the team is, what students learn, and who they are -->
+    <section>
+      <div class="wrap intro">
+        <div>
+          <span class="eyebrow">The association</span>
+          <h2>A space programme run by students</h2>
+          <p class="lead">We are a student-led association at EPFL. Our teams mirror a real space programme: mission design, flight software, electronics, mechanics, the ground segment, communications and sponsoring.</p>
+          <p>Members learn by doing what the job requires: link budgets, modulation and antennas, embedded software, structural and vibration analysis, and running satellite operations.</p>
+          <p>What makes it hard is that our hardware has to be qualified like any other spacecraft before it can fly, while the people building it join and leave with the academic calendar. Handing work over cleanly is as much part of the engineering as the hardware itself.</p>
+        </div>
+
+        <div class="members">
+          <h3>Who builds it</h3>
+          <p class="sub">About 105 members from across EPFL</p>
+          <ul>
+            <li><span class="n">21</span><span>Mechanical Engineering</span><span class="bar" style="width:100%"></span></li>
+            <li><span class="n">20</span><span>Electrical and Electronic Engineering</span><span class="bar" style="width:95%"></span></li>
+            <li><span class="n">16</span><span>Computer and Communication Sciences</span><span class="bar" style="width:76%"></span></li>
+            <li><span class="n">12</span><span>Robotics</span><span class="bar" style="width:57%"></span></li>
+            <li><span class="n">9</span><span>Microengineering</span><span class="bar" style="width:43%"></span></li>
+            <li><span class="n">6</span><span>Physics</span><span class="bar" style="width:29%"></span></li>
+            <li><span class="n">5</span><span>Communication Systems</span><span class="bar" style="width:24%"></span></li>
+            <li class="other"><span class="n">16</span><span>Other sections, incl. Computer Science, Mathematics, Chemistry, Computational and Quantum Science</span><span class="bar" style="width:76%"></span></li>
+          </ul>
+          <p class="note">Approximate head counts, Fall 2026.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Storyline -->
+    <section class="tight" style="padding-top:0">
+      <div class="wrap">
+        <div class="timeline-head">
+          <span class="eyebrow">Our story so far</span>
+          <h2>From one board in orbit to our own CubeSat</h2>
+        </div>
+        <ol class="timeline">
+          <li>
+            <div class="year">2020</div>
+            <h3>The association is founded</h3>
+            <p>EPFL Spacecraft Team starts as a student-led association.</p>
+          </li>
+          <li>
+            <div class="year">2023</div>
+            <h3>Bunny OBC</h3>
+            <p>Our first in-orbit demonstration: the Bunny on-board computer.</p>
+            <a href="https://youtu.be/bsRbVJMOY2E" target="_blank" rel="noopener">Watch the Bunny OBC video<span class="sr"> (opens YouTube)</span></a>
+          </li>
+          <li>
+            <div class="year">2025</div>
+            <h3>Twocan OBC</h3>
+            <p>Our second in-orbit demonstration. If one computer can't, Twocan.</p>
+          </li>
+          <li class="next">
+            <div class="year">Q4 2027</div>
+            <h3>CHESS Pathfinder&nbsp;0</h3>
+            <p>Our first 3U CubeSat, on a launch we won through the IAF SUCC competition.</p>
+            <a href="#cp0">About the mission</a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Imagery: full-bleed -->
+    <section class="gallery-section" aria-labelledby="lab-title">
+      <div class="wrap gallery-head">
+        <div>
+          <span class="eyebrow">In the lab</span>
+          <h2 id="lab-title" style="margin:0">Hardware and software we build ourselves</h2>
+        </div>
+        <p>We design, assemble and test the subsystems of the satellites and the ground segment station.</p>
+      </div>
+      <div class="gallery">
+        <figure class="g-structure">
+          <img src="structure-qm.jpg" loading="lazy" alt="Two students in white cleanroom suits fixing a solar panel onto the metal frame of a CubeSat structure, with wires, a screwdriver and a multimeter on the bench">
+          <figcaption>Assembling the qualification model of the structure before its vibration test.</figcaption>
+        </figure>
+        <figure class="g-uhf">
+          <img src="uhf-transceiver.jpg" loading="lazy" alt="A student guiding a precision dispensing tool over a green circuit board labelled SatNOGS COMMS">
+          <figcaption>Assembling the UHF transceiver.</figcaption>
+        </figure>
+        <figure class="g-code">
+          <img src="fs-code.webp" loading="lazy" alt="Lines of C++ flight software code for the satellite's mode transitions, fading into a rendering of one of our circuit boards with the EPFL Spacecraft Team logo">
+          <figcaption>Flight software, and one of the boards we use.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHESS Pathfinder 0 -->
+    <section class="mission" id="cp0">
+      <div class="wrap mission-grid">
+        <div>
+          <span class="eyebrow">The first 3U CubeSat</span>
+          <h2>CHESS Pathfinder&nbsp;0</h2>
+          <p class="lead">Having won a free launch opportunity through the IAF SUCC competition, we will launch CP-0, our first 3U CubeSat, as a platform demonstrator.</p>
+          <ol class="goals">
+            <li>
+              <div>
+                <h3>De-risk the constellation</h3>
+                <p>Prove in orbit the platform, the communications system and the ground segment.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Collaborate with Swiss stakeholders</h3>
+                <p>Our satellite will fly a GNSS from ETH Zurich and a SPAD camera from NovoViz. We also work with the University of Bern for the testing phase.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Support the Dark and Quiet Skies initiative</h3>
+                <p>Perform electromagnetic calibration measurements in support of astronomers and the Dark and Quiet Skies initiative.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="video-col">
+          <!-- Lightweight YouTube facade: loads the player only on click. Without JavaScript it is a normal link to YouTube. -->
+          <a class="yt" href="https://www.youtube.com/watch?v=YzKk7H1tVos" data-yt="YzKk7H1tVos" aria-label="Play video: the team and CHESS Pathfinder 0 (YouTube)">
+            <img src="https://i.ytimg.com/vi/YzKk7H1tVos/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+            <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <span class="yt-label" aria-hidden="true">The team and CHESS Pathfinder 0</span>
+          </a>
+          <p class="video-caption">Watch this video to learn more about the team and CHESS Pathfinder 0. <a href="https://youtu.be/YzKk7H1tVos" target="_blank" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amateur radio -->
+    <section class="radio-band tight">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">For radio amateurs</span>
+          <h2>Listen to CP-0 from your own station</h2>
+          <p>Our UHF ground station is part of the SatNOGS network. We plan open telemetry and a set of public telecommands for licensed radio amateurs.</p>
+        </div>
+        <a class="btn btn-primary" href="amateur-radio.html">Connect with our satellite</a>
+      </div>
+    </section>
+
+    <!-- Supporters -->
+    <section class="supporters tight">
+      <div class="wrap">
+        <h2>Supported by</h2>
+        <ul class="logos">
+          <li><a href="https://www.epfl.ch/en/" target="_blank" rel="noopener"><img src="logo-epfl.png" alt="EPFL" loading="lazy"></a></li>
+          <li><a href="https://ethz.ch/en.html" target="_blank" rel="noopener"><img src="logo-eth.png" alt="ETH Zürich" loading="lazy"></a></li>
+          <li><a href="https://www.apco-technologies.eu" target="_blank" rel="noopener"><img src="logo-apco.png" alt="APCO Technologies" loading="lazy"></a></li>
+          <li><a href="https://coloral.ch/en/" target="_blank" rel="noopener"><img src="logo-coloral.png" alt="Coloral" loading="lazy"></a></li>
+          <li><a href="https://chiwi.ch" target="_blank" rel="noopener"><img src="logo-chiwi.png" alt="ChiWi Stiftung" loading="lazy"></a></li>
+          <li><a href="https://www.unibe.ch/index_eng.html" target="_blank" rel="noopener"><img src="logo-unibe.png" alt="University of Bern" loading="lazy"></a></li>
+          <li><a href="https://novoviz.com" target="_blank" rel="noopener"><img src="logo-novoviz.png" alt="NovoViz" loading="lazy"></a></li>
+          <li><a href="https://loro.ch/fr" target="_blank" rel="noopener"><img src="logo-loro.png" alt="Loterie Romande" loading="lazy"></a></li>
+          <li><a href="https://www.harwin.com" target="_blank" rel="noopener"><img src="logo-harwin.png" alt="Harwin" loading="lazy"></a></li>
+          <li><a href="https://xometry.eu/en/?nab=0" target="_blank" rel="noopener"><img src="logo-xometry.png" alt="Xometry" loading="lazy"></a></li>
+          <li><a href="https://www.esa.int" target="_blank" rel="noopener"><img src="logo-esa.png" alt="European Space Agency" loading="lazy"></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>&copy; EPFL Spacecraft Team · <a href="statutes.html">Statutes</a></span>
+      <ul aria-label="Contact and social media">
+        <li><a href="mailto:est@epfl.ch">est@epfl.ch</a></li>
+        <li><a href="https://www.linkedin.com/company/epfl-spacecraft-team/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/epfl_spacecraft_team/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@EPFLSpacecraftTeam" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Hero orbit video: fades in over the team photo once it plays.
+    // Stays off for visitors who prefer reduced motion; the others get a pause button.
+    (function () {
+      var video = document.getElementById('hero-video');
+      var toggle = document.getElementById('motion-toggle');
+      if (!video || !toggle) return;
+      var label = toggle.querySelector('.sr');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      video.addEventListener('playing', function () {
+        video.classList.add('is-playing');
+        toggle.hidden = false;
+      });
+      function setPaused(paused) {
+        toggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        label.textContent = paused ? 'Play background animation' : 'Pause background animation';
+        if (paused) { video.pause(); } else { video.play().catch(function () {}); }
+      }
+      toggle.addEventListener('click', function () {
+        setPaused(toggle.getAttribute('aria-pressed') !== 'true');
+      });
+      if (!reduce) { video.play().catch(function () {}); }
+    })();
+
+    // Replace the YouTube thumbnail with the real player when clicked.
+    document.querySelectorAll('a[data-yt]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var frame = document.createElement('div');
+        frame.className = 'yt-frame';
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + link.dataset.yt + '?autoplay=1';
+        iframe.title = 'The team and CHESS Pathfinder 0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        frame.appendChild(iframe);
+        link.replaceWith(frame);
+        iframe.focus();
+      });
+    });
+  </script>
+</body>
+</html>
